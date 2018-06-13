@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Песочница для тренировок</title>
+	<style>
+		form {
+			margin: 40px auto;
+			max-width: 400px;
+		}
+		form input {
+			display: block;
+			margin: 20px 0;
+		}
+	</style>
+</head>
+<body>
+	<button>Send</button>
+
+
+	<form action="mail.php" method="POST">
+		<label for="name">Имя</label>
+		<input type="text" name="name" required id="name">
+		<label for="email">E-mail</label>
+		<input type="email" name="email" required id="email">
+		<label for="phone">Телефон</label>
+		<input type="tel" name="phone" required id="phone">
+		<input type="submit" value="Отправить">
+	</form>
+
+	<div class="links">
+		<a href="#">1 link</a>
+		<a href="#">2 link</a>
+		<a href="#google">3 link</a>
+		<a href="#">4 link</a>
+		<a href="#yandex">5 link</a>
+	</div>
+	<script>
+		'use strict';
+		// Моудль callback.js
+		(function(){
+			// Callback'и
+			var elem = {
+				name: 'Это элемент',
+				mainAction: function(){
+					console.log('Какой-то код');
+					if(typeof this.callback === 'function'){
+						this.callback();
+					}
+				},
+				callback: null
+			}
+			elem.callback = function(){
+				console.log("Привет от callback'а");
+			}
+			elem.mainAction();
+		})();
+
+		// Модуль handlerNaming.js
+		(function(){
+			//Обработчики событий - наименование
+			var btn = document.querySelector("button");
+			function btnClickHandler(){
+				alert("элементСобытиеHandler - btnClickHandler");
+			}
+			function onBtnClick(){
+				alert("onЭлементСобытие - onBtnClick");
+			}
+			btn.addEventListener("click", function(){
+				btnClickHandler();
+			});
+			btn.addEventListener("click", function() {
+				onBtnClick();
+			});
+		})();
+
+		// Модуль delegate.js
+		(function(){
+			//Делегирование
+			window.form = document.querySelector("form");
+
+			// Фаза захвата	
+			// Для этой фазы работают все события
+			form.addEventListener("focus", function(e){
+				console.log("focused on " + e.target.name + ' field');
+			}, true);
+
+			// Фаза всплытия
+			var links = document.querySelector(".links");
+			links.addEventListener("click", function(e){
+				if(e.target.getAttribute("href") === '#yandex'){
+					// Отправка данных для статистики
+					console.log("yandex");
+				} else if(e.target.getAttribute("href") === '#google'){
+					console.log("google");
+				} else {
+					console.log(e.target.textContent);
+				}
+			});
+		})();
+
+		// Модуль ajax.js
+		(function(){
+			var xhr = new XMLHttpRequest();
+			form.addEventListener("submit", function(e){
+				e.preventDefault();
+				xhr.addEventListener("load", function() {
+					switch(xhr.status){
+						case 200:
+							alert('Cool bro, its 200');
+					}
+				});
+				xhr.addEventListener("timeout", function(){
+					alert("Too long...");
+				});
+				xhr.addEventListener("error", function(){
+					alert("Error with network");
+				});
+				var formData = new FormData(this);
+				xhr.open("POST", "mail.php");
+				xhr.send(formData);	
+				console.log();
+			});
+			
+		})();
+	
+	</script>
+</body>
+</html>
