@@ -5,18 +5,71 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Песочница для тренировок</title>
 	<style>
-		form {
-			margin: 40px auto;
-			max-width: 400px;
-		}
-		form input {
-			display: block;
-			margin: 20px 0;
-		}
+	body {
+		position: relative;
+		min-height: 1000px;
+		padding: 0;
+		margin: 0;
+	}
+	form {
+		margin: 40px auto;
+		max-width: 400px;
+	}
+	form input {
+		display: block;
+		margin: 20px 0;
+	}
+
+	.modal {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+
+		min-height: 100vh;
+
+		background-color: rgba(0,0,0,.5);
+
+		transition: all 400ms;
+	}
+	.modal--opened {
+		display: block;
+	}
+
+	.modal__content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		width: 600px;
+		padding: 30px 15px;
+
+		background-color: #fff;
+	}
+	.close {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+
+		font-size: 20px;
+
+		outline: none;
+		border: none;
+		background-color: transparent;
+	}
+	.close:hover {
+		cursor: pointer;
+		opacity: .8;
+	}
+	p {
+		margin: 0;
+	}
 	</style>
 </head>
 <body>
-	<button>Send</button>
+	<button class="button">Send</button>
 
 
 	<form action="mail.php" method="POST">
@@ -36,6 +89,15 @@
 		<a href="#">4 link</a>
 		<a href="#yandex">5 link</a>
 	</div>
+
+	<button class="btn_modal">Модальное окно</button>
+	<div class="modal">
+		<div class="modal__content">
+			<p>`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non ut corporis, voluptatum fuga totam voluptate dicta libero consequatur labore excepturi.</p>
+			<button class="close">x</button>
+		</div>
+	</div>
+
 	<script>
 		'use strict';
 		// Моудль callback.js
@@ -60,7 +122,7 @@
 		// Модуль handlerNaming.js
 		(function(){
 			//Обработчики событий - наименование
-			var btn = document.querySelector("button");
+			var btn = document.querySelector(".button");
 			function btnClickHandler(){
 				alert("элементСобытиеHandler - btnClickHandler");
 			}
@@ -123,6 +185,90 @@
 				console.log();
 			});
 			
+		})();
+
+		// Модуль popup.js
+		(function(){
+			var btn = document.querySelector(".btn_modal");
+			var modal = document.querySelector(".modal");
+			var closeBtn = document.querySelector(".close");
+			window.modalContent = document.querySelector(".modal__content");
+			function openPopup() {
+				modal.classList.add("modal--opened");
+			}
+			function closePopup() {
+				modal.classList.remove("modal--opened");
+				modalContent.removeAttribute("style");
+			}
+			document.body.addEventListener("click", function(e) {
+				if(e.target === btn){
+					openPopup();
+				} else if(e.target === closeBtn){
+					closePopup();
+				}
+			});
+		})();
+
+		// Модуль drag.js - 1 способ(относительно начальной точки)
+		// (function(){
+		// 	var x,y, sumX, sumY, maxX, maxY;
+		// 	modalContent.addEventListener("mousedown", function(e){
+		// 		x = e.clientX;
+		// 		y = e.clientY;
+		// 		if(e.target.tagName.toLowerCase() !== "p"){
+
+		// 			function onMouseMove(e){
+		// 				sumX = x - e.clientX;
+		// 				sumY = y - e.clientY;
+		// 				x = e.clientX;
+		// 				y = e.clientY;
+					
+		// 				if((parseInt(modalContent.style.top) < 50)){
+		// 					modalContent.style.top = 50 + "px";
+		// 				} else {
+		// 					modalContent.style.top = (modalContent.offsetTop - sumY) + "px";
+		// 				}
+		// 				if((parseInt(modalContent.style.left) < 318)){
+		// 					modalContent.style.left = 318 + "px";
+		// 				} else {
+		// 				modalContent.style.left = (modalContent.offsetLeft - sumX) + "px";
+		// 				}
+		// 			}
+		// 			function onMouseUp(){
+		// 				document.removeEventListener("mousemove", onMouseMove);
+		// 			}
+		// 			document.addEventListener("mousemove", onMouseMove);
+		// 			document.addEventListener("mouseup", onMouseUp);
+		// 		}
+		// 	})
+		// })();
+
+		// Модуль drag.js 2 способ
+		(function(){
+			var x, y, y1, x1;
+			modalContent.addEventListener("mousedown", function(e){
+				var startCoords = {
+					x: e.clientX,
+					y: e.clientY
+				}
+				console.log(e);
+
+				function onMouseMove(e){
+					var shiftCoords = {
+						x1: e.clientX - startCoords.x,
+						y1: e.clientY - startCoords.y
+					}
+					startCoords.x = e.clientX;
+					startCoords.y = e.clientY;
+					modalContent.style.left = (modalContent.offsetLeft + shiftCoords.x1) + "px";
+					modalContent.style.top = (modalContent.offsetTop + shiftCoords.y1) + "px";
+				}
+				document.addEventListener("mousemove", onMouseMove);
+				document.addEventListener("mouseup", function(){
+					document.removeEventListener("mousemove", onMouseMove);
+				})
+			});
+
 		})();
 	
 	</script>
