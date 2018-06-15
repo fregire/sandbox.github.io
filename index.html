@@ -89,7 +89,7 @@
 		<a href="#">4 link</a>
 		<a href="#yandex">5 link</a>
 	</div>
-
+	<button class="json_btn">Send/Recieve JSON</button>
 	<button class="btn_modal">Модальное окно</button>
 	<div class="modal">
 		<div class="modal__content">
@@ -97,180 +97,21 @@
 			<button class="close">x</button>
 		</div>
 	</div>
+	<form action="page.php">
+		<input type="submit" value="Send to page.php" class="btn-page">
+	</form>
 
-	<script>
-		'use strict';
-		// Моудль callback.js
-		(function(){
-			// Callback'и
-			var elem = {
-				name: 'Это элемент',
-				mainAction: function(){
-					console.log('Какой-то код');
-					if(typeof this.callback === 'function'){
-						this.callback();
-					}
-				},
-				callback: null
-			}
-			elem.callback = function(){
-				console.log("Привет от callback'а");
-			}
-			elem.mainAction();
-		})();
-
-		// Модуль handlerNaming.js
-		(function(){
-			//Обработчики событий - наименование
-			var btn = document.querySelector(".button");
-			function btnClickHandler(){
-				alert("элементСобытиеHandler - btnClickHandler");
-			}
-			function onBtnClick(){
-				alert("onЭлементСобытие - onBtnClick");
-			}
-			btn.addEventListener("click", function(){
-				btnClickHandler();
-			});
-			btn.addEventListener("click", function() {
-				onBtnClick();
-			});
-		})();
-
-		// Модуль delegate.js
-		(function(){
-			//Делегирование
-			window.form = document.querySelector("form");
-
-			// Фаза захвата	
-			// Для этой фазы работают все события
-			form.addEventListener("focus", function(e){
-				console.log("focused on " + e.target.name + ' field');
-			}, true);
-
-			// Фаза всплытия
-			var links = document.querySelector(".links");
-			links.addEventListener("click", function(e){
-				if(e.target.getAttribute("href") === '#yandex'){
-					// Отправка данных для статистики
-					console.log("yandex");
-				} else if(e.target.getAttribute("href") === '#google'){
-					console.log("google");
-				} else {
-					console.log(e.target.textContent);
-				}
-			});
-		})();
-
-		// Модуль ajax.js
-		(function(){
-			var xhr = new XMLHttpRequest();
-			form.addEventListener("submit", function(e){
-				e.preventDefault();
-				xhr.addEventListener("load", function() {
-					switch(xhr.status){
-						case 200:
-							alert('Cool bro, its 200');
-					}
-				});
-				xhr.addEventListener("timeout", function(){
-					alert("Too long...");
-				});
-				xhr.addEventListener("error", function(){
-					alert("Error with network");
-				});
-				var formData = new FormData(this);
-				xhr.open("POST", "mail.php");
-				xhr.send(formData);	
-				console.log();
-			});
-			
-		})();
-
-		// Модуль popup.js
-		(function(){
-			var btn = document.querySelector(".btn_modal");
-			var modal = document.querySelector(".modal");
-			var closeBtn = document.querySelector(".close");
-			window.modalContent = document.querySelector(".modal__content");
-			function openPopup() {
-				modal.classList.add("modal--opened");
-			}
-			function closePopup() {
-				modal.classList.remove("modal--opened");
-				modalContent.removeAttribute("style");
-			}
-			document.body.addEventListener("click", function(e) {
-				if(e.target === btn){
-					openPopup();
-				} else if(e.target === closeBtn){
-					closePopup();
-				}
-			});
-		})();
-
-		// Модуль drag.js - 1 способ(относительно начальной точки)
-		// (function(){
-		// 	var x,y, sumX, sumY, maxX, maxY;
-		// 	modalContent.addEventListener("mousedown", function(e){
-		// 		x = e.clientX;
-		// 		y = e.clientY;
-		// 		if(e.target.tagName.toLowerCase() !== "p"){
-
-		// 			function onMouseMove(e){
-		// 				sumX = x - e.clientX;
-		// 				sumY = y - e.clientY;
-		// 				x = e.clientX;
-		// 				y = e.clientY;
-					
-		// 				if((parseInt(modalContent.style.top) < 50)){
-		// 					modalContent.style.top = 50 + "px";
-		// 				} else {
-		// 					modalContent.style.top = (modalContent.offsetTop - sumY) + "px";
-		// 				}
-		// 				if((parseInt(modalContent.style.left) < 318)){
-		// 					modalContent.style.left = 318 + "px";
-		// 				} else {
-		// 				modalContent.style.left = (modalContent.offsetLeft - sumX) + "px";
-		// 				}
-		// 			}
-		// 			function onMouseUp(){
-		// 				document.removeEventListener("mousemove", onMouseMove);
-		// 			}
-		// 			document.addEventListener("mousemove", onMouseMove);
-		// 			document.addEventListener("mouseup", onMouseUp);
-		// 		}
-		// 	})
-		// })();
-
-		// Модуль drag.js 2 способ
-		(function(){
-			var x, y, y1, x1;
-			modalContent.addEventListener("mousedown", function(e){
-				var startCoords = {
-					x: e.clientX,
-					y: e.clientY
-				}
-				console.log(e);
-
-				function onMouseMove(e){
-					var shiftCoords = {
-						x1: e.clientX - startCoords.x,
-						y1: e.clientY - startCoords.y
-					}
-					startCoords.x = e.clientX;
-					startCoords.y = e.clientY;
-					modalContent.style.left = (modalContent.offsetLeft + shiftCoords.x1) + "px";
-					modalContent.style.top = (modalContent.offsetTop + shiftCoords.y1) + "px";
-				}
-				document.addEventListener("mousemove", onMouseMove);
-				document.addEventListener("mouseup", function(){
-					document.removeEventListener("mousemove", onMouseMove);
-				})
-			});
-
-		})();
-	
-	</script>
+	<form class="user_info" action="login.php">
+		<label>
+			Имя пользователя
+			<input type="text" name="name" id="" required>
+		</label>
+		<label>
+			Возраст пользователя
+			<input type="number" name="age" id="" required>
+		</label>
+		<input type="submit" value="Send">
+	</form>
+	<script src="main.js"></script>
 </body>
 </html>

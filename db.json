@@ -1,0 +1,71 @@
+{
+  "posts": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "title": "gergergg-ergergergrg",
+      "author": "greger",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "name": "ferfre",
+      "age": "4234",
+      "id": 2
+    },
+    {
+      "name": "trgr",
+      "age": "312",
+      "id": 2.177324952534876
+    },
+    {
+      "name": "trgr",
+      "age": "312",
+      "id": 8.796625810778876
+    },
+    {
+      "name": "trgr",
+      "age": "312",
+      "id": 7.505473951130619
+    },
+    {
+      "name": "ggr",
+      "age": "3242",
+      "id": 7.725008289739009
+    },
+    {
+      "name": "ggr",
+      "age": "3242",
+      "id": 3.8114931120080775
+    },
+    {
+      "name": "ggr",
+      "age": "3242",
+      "id": 9.215645563340292
+    }
+  ]
+}
