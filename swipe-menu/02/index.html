@@ -11,13 +11,18 @@
 			padding: 0;
 			margin: 0;
 		}
-		.tss--close {
+
+		.body--freezed {
+			overflow: hidden;
+		}
+
+		.tss {
 			position: absolute;
 			top: 0;
 		}
 
 		.menu {
-			height: 100%;
+			height: 100vh;
 			width: 290px;
 			overflow-y: scroll;
 			overflow-x: hidden;
@@ -43,7 +48,7 @@
 	
 	<aside class="menu" id="menu">
 		<div class="menu__content">
-			<div class="menu__close-btn close-btn">X</div>
+			<button class="menu__close-btn close-btn">Закрыть меню</button>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam pariatur impedit rem, velit unde magnam ad, error nisi ipsa reiciendis earum laudantium doloremque praesentium dolor eveniet ipsum quasi, repellat asperiores! Dolorum, rerum harum aliquam eligendi, corporis ratione beatae facere quam debitis aspernatur saepe odit esse magni inventore sunt ullam maiores officiis explicabo adipisci, iure doloremque deserunt magnam! In id, soluta iste. Exercitationem eaque dignissimos, repudiandae repellat mollitia. Praesentium, iure minima facilis non assumenda nisi fuga nulla itaque tenetur! Consequatur amet, praesentium facilis aperiam minima aliquid ut asperiores nulla voluptatum tempore error unde quasi omnis rem, quaerat nostrum eaque, possimus quos.
 			<ul>
 				<li>Пункт 1</li>
@@ -88,7 +93,7 @@
 	  integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
 	  crossorigin="anonymous"></script>
 
-	  <script src="touch-sideswipe.min.js"></script>
+	  <script src="touch-sideswipe.js"></script>
 
 	<script src="script.js"></script>
 </body>
