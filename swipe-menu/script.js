@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function(){
 		}
 	});
 
-	var startCoord = 0;
-	var shiftCoord;
+	var startCoordX = 0;
+	var shiftCoordX, shiftCoordY;
 	var oneTouch;
 	var openingMenu = false;
 	var transform = -290;
@@ -40,11 +40,14 @@ document.addEventListener("DOMContentLoaded", function(){
 	var swipeDistance = 0;
 	var followDistance = 0;
 	var action;
+	var isVertical = false;
+
 
 
 	document.addEventListener("touchstart", function(e){
-		startCoord = e.targetTouches[0].clientX;
-		if(startCoord <= 20 && !isOpenedMenu()){
+		startCoordX = e.targetTouches[0].clientX;
+
+		if(startCoordX <= 30 && !isOpenedMenu()){
 			openingMenu = true;
 		}
 	});
@@ -52,13 +55,19 @@ document.addEventListener("DOMContentLoaded", function(){
 	document.addEventListener("touchmove", function(e){
 		var oneTouch = e.targetTouches[0];
 		//Направление свайпа
-		shiftCoord = oneTouch.clientX - startCoord;
+		shiftCoordX = oneTouch.clientX - startCoordX;
 
-		if(shiftCoord > 0 && openingMenu){
-			menu.classList.add("menu--opened");
+		if(shiftCoordX < 2){
+			isVertical = true;
+		} else {
+			isVertical = false;
 		}
 
-		followDistance = -290 + oneTouch.clientX;
+		if(shiftCoordX > 0 && openingMenu){
+			menu.classList.add("menu--opened");
+			followDistance = -290 + oneTouch.clientX;
+		}
+
 
 		if(followDistance >= 0){
 			followDistance = 0;
@@ -66,18 +75,22 @@ document.addEventListener("DOMContentLoaded", function(){
 
 		if(followDistance <= -290){
 			followDistance = -290;
-		}
+		}			
+
+		menu.style.transform = "translate(" + followDistance + "px)";
 
 		swipeDistance++;
 		
 
-		menu.style.transform = "translate(" + followDistance + "px)";
-
-		startCoord = oneTouch.clientX;
+		startCoordX = oneTouch.clientX;
 
 	});
 
 	document.addEventListener("touchend", function(){
+		if(isVertical && isOpenedMenu()){
+			return;
+		}
+
 		if(isOpenedMenu() && swipeDistance < 20){
 			openMenu();
 		} else {
@@ -89,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			}		
 		}
 
-		startCoord = 0;
+		startCoordX = 0;
 		swipeDistance = 0;
 	});
 
