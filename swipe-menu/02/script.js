@@ -13,6 +13,9 @@ $(document).ready(function(){
         
     });
 
+    menu.style.visibility = 'visible';
+
+
     var openBtn = document.querySelector(".open-btn");
     var closeBtn = document.querySelector(".close-btn");
 
