@@ -59,7 +59,7 @@
             elMain.appendChild(elSubmain);
             elInit.parentNode.insertBefore(elMain, elInit);
             elSubmain.appendChild(elInit);
-            document.body.insertBefore(elBg, document.body.lastChild);
+            document.children[0].insertBefore(elBg, document.children[0].lastChild);
             //-------------------------------
 
             //-------------------------------
@@ -113,7 +113,7 @@
 
 
         function tssTouchstart(event) {
-            document.body.style.overflow = 'hidden';
+            document.children[0].style.overflow = 'hidden';
             elMain.style.transitionDuration = '0s';
             elBg.style.transitionDuration = '0s';
             elBg.style.zIndex = 999;
@@ -170,7 +170,7 @@
         function tssTouchend(event) {
             actionInited = false;
             var touchendCoordX = event.changedTouches[0].clientX;
-            document.body.style.overflow = '';
+            document.children[0].style.overflow = '';
             elMain.style.transitionDuration = opt.moveSpeed + 's'; //todo: перетащить в open/close
             elBg.style.transitionDuration = opt.moveSpeed + 's';
             if (!open && touchendCoordX > touchstartCoordX) {
@@ -233,7 +233,7 @@
             elBg.classList.remove('tss-bg--close');
             elBg.classList.add('tss-bg--open');
             elBg.style.zIndex = '999';
-            document.body.classList.add("body--freezed");
+            document.children[0].classList.add("body--freezed");
             open = true;
         }
         //------------------------------------------------------------------
@@ -242,7 +242,7 @@
         // change states on Close
         //------------------------------------------------------------------
         function tssClose() {
-            document.body.style.overflow = '';
+            document.children[0].style.overflow = '';
             elBg.style.opacity = 0;
             elMain.style.width = elMainWidth + 'px';
             elMain.style.transform = 'translateX(' + (-elSubmainWidth) + 'px)';
@@ -251,7 +251,7 @@
             elBg.classList.remove('tss-bg--open');
             elBg.classList.add('tss-bg--close');
             elBg.style.zIndex = '-999';
-            document.body.classList.remove("body--freezed");
+            document.children[0].classList.remove("body--freezed");
             open = false;
         }
         //------------------------------------------------------------------
