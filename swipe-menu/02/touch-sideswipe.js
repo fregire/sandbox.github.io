@@ -131,7 +131,7 @@
             touchmoveCoordX = event.changedTouches[0].clientX;
             var elMainCoordX0New = touchmoveCoordX - (touchstartCoordX - elMainCoordX0);
             console.log(elMainCoordX0New);
-            if ((elMainCoordX0New) <= -22) { // swipe touchmove < elSubmainWidth
+            if ((elMainCoordX0New) <= -21) { // swipe touchmove < elSubmainWidth
                 if (touchstartCoordX > elSubmainWidth) { //if opened and touchstart over elSub
                     elMainCoordX0New = elMainCoordX0New + (touchstartCoordX - elSubmainWidth);
                 }
