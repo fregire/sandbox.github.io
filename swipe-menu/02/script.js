@@ -8,7 +8,7 @@ $(document).ready(function(){
         sideHookWidth: 0, 
         moveSpeed: 0.5,
         opacityBackground: .5,
-        shiftForStart: 50,
+        shiftForStart: 100,
         windowMaxWidth: 2000, 
         
     });
