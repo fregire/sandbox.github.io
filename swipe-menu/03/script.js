@@ -1,3 +1,5 @@
+
+
 (function(root, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -39,6 +41,7 @@
         var shiftCoordY, shiftCoordX;
         var touchmoveCoordY, touchstartCoordY;
         var action;
+        var currentYOffset;
 
         //------------------------------------------------------------------
         // create, define, customize initial elements and states
@@ -225,6 +228,9 @@
         // change states on Open
         //------------------------------------------------------------------
         function tssOpen() {
+            currentYOffset = window.pageYOffset; 
+            document.body.style.top = -currentYOffset + 'px';
+            
             elBg.style.opacity = opt.opacityBackground;
             elMain.style.width = winInnerWidth + 'px';
             elMain.style.transform = 'translateX(0px)';
@@ -253,6 +259,7 @@
             elBg.style.zIndex = '-999';
             document.body.classList.remove("body--freezed");
             open = false;
+            window.scroll(0, currentYOffset);
         }
         //------------------------------------------------------------------
 
@@ -355,11 +362,15 @@ document.addEventListener("DOMContentLoaded", function(){
         closeItems[i].addEventListener("click", function(e){
             e.preventDefault();
             touchSideSwipe.tssClose();
+            document.body.style.top = "";
+            window.scroll(0, currentYOffset);
         });
     }
 
     for(var i = 0; i < openItems.length; i++){
         openItems[i].addEventListener("click", function(e){
+            currentYOffset = window.pageYOffset;
+            document.body.style.top = -currentYOffset + 'px';
             e.preventDefault();
             touchSideSwipe.tssOpen();
         });
