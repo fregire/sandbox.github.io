@@ -36,24 +36,39 @@
 			left: 0;
 			bottom: 0;
 			right: 0;
-			overflow-scrolling: touch;
-    		-webkit-overflow-scrolling: touch;
-			overflow-y: scroll;
-			overflow-x: visible;
+			height: 100%;
 			visibility: hidden;
 			width: 250px;
 		}
 
-		.menu__content {
-			padding: 10px 10px 30px 10px;
-			background: red;
+		.menu__scroll {
+			width: 100%;
+		    overflow-x: hidden;
+		    overflow-y: scroll;
+		    position: absolute;
+		    z-index: 12;
+		    top: 45px;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    overflow-scrolling: touch;
+		    -webkit-overflow-scrolling: touch;
+
+		    background: red;
+		}
+
+		.menu__control {
+			background: blue;
+			height: 50px;
+			width: 100%;
 		}
 	</style>
 </head>
 <body>
 	
 	<aside class="menu" id="menu">
-		<div class="menu__content">
+		<div class="menu__control">Различные кнопки</div>
+		<div class="menu__scroll">
 			<button class="menu__close-btn close-btn">Закрыть меню</button>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam pariatur impedit rem, velit unde magnam ad, error nisi ipsa reiciendis earum laudantium doloremque praesentium dolor eveniet ipsum quasi, repellat asperiores! Dolorum, rerum harum aliquam eligendi, corporis ratione beatae facere quam debitis aspernatur saepe odit esse magni inventore sunt ullam maiores officiis explicabo adipisci, iure doloremque deserunt magnam! In id, soluta iste. Exercitationem eaque dignissimos, repudiandae repellat mollitia. Praesentium, iure minima facilis non assumenda nisi fuga nulla itaque tenetur! Consequatur amet, praesentium facilis aperiam minima aliquid ut asperiores nulla voluptatum tempore error unde quasi omnis rem, quaerat nostrum eaque, possimus quos.
 			<ul>
