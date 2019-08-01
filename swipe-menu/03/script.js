@@ -231,7 +231,7 @@
             if(!elMain.classList.contains('tss--open')){
                 currentYOffset = window.pageYOffset; 
             }
-            
+
             if(currentYOffset > 0){
               document.body.style.top = -currentYOffset + 'px';
             }
@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function(){
         elementWidth: sidebar.offsetWidth,
         elementMaxWidth: 1, 
         sideHookWidth: 15, 
-        moveSpeed: 0.5,
+        moveSpeed: 0.8,
         opacityBackground: 0.5,
         shiftForStart: 100,
         windowMaxWidth: 1000, 
