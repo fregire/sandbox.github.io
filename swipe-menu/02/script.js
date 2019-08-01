@@ -113,6 +113,7 @@
 
 
         function tssTouchstart(event) {
+            event.preventDefault();
             document.body.style.overflow = 'hidden';
             elMain.style.transitionDuration = '0s';
             elBg.style.transitionDuration = '0s';
@@ -127,6 +128,7 @@
         // Drag element (use states from tssInitStates, tssRecalcStates, tssTouchstart)
         //------------------------------------------------------------------
         function tssTouchmove(event) {
+            event.preventDefault();
             touchmoveCoordX = event.changedTouches[0].clientX;
             touchmoveCoordY = event.changedTouches[0].clientY;
 
@@ -161,6 +163,8 @@
                     }
                 }
             }
+
+            return false;
         }
         //------------------------------------------------------------------
 
