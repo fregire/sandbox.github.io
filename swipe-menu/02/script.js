@@ -1,27 +1,17 @@
 $(document).ready(function(){
-            var touchSideSwipe = new TouchSideSwipe({
+    var menu = document.querySelector(".menu");
 
-            // container element
-            elementID: 'menu',
-
-            // width and height
-            elementWidth: 290, //px
-            elementMaxWidth: 0.8, // *100%
-            sideHookWidth: 0, //px
-
-            // animation speed in seconds
-            moveSpeed: 0.5,
-
-            // opacity of background
-            opacityBackground: .5,
-
-            // in pixels
-            shiftForStart: 50,
-
-            // max width of window
-            windowMaxWidth: 2000, 
-            
-        });
+    var touchSideSwipe = new TouchSideSwipe({
+        elemSelector: '.menu',
+        elementWidth: menu.innerWidth,
+        elementMaxWidth: .95, 
+        sideHookWidth: 0, 
+        moveSpeed: 0.5,
+        opacityBackground: .5,
+        shiftForStart: 50,
+        windowMaxWidth: 2000, 
+        
+    });
 
     var openBtn = document.querySelector(".open-btn");
     var closeBtn = document.querySelector(".close-btn");

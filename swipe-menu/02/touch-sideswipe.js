@@ -16,7 +16,7 @@
         'use strict';
         //------------------------------------------------------------------
         var opt = { //default options
-            elInitID: config.elementID || 'touchSideSwipe',
+            elem: config.elemSelector || 'touchSideSwipe',
             elSubmainWidth: config.elementWidth || 400, //px
             elSubmainMaxWidth: config.elementMaxWidth || 0.8, // *100%
             sideHookWidth: config.sideHookWidth || 44, //px
@@ -48,7 +48,7 @@
             //-------------------------------
             // create DOM-elements: main-wrapper, sub-wrapper, label, background
             //-------------------------------
-            elInit = document.getElementById(opt.elInitID);
+            elInit = document.querySelector(opt.elem);
             elMain = document.createElement('div');
             elSubmain = document.createElement('div');
             elLabel = document.createElement('div');
@@ -130,8 +130,8 @@
         function tssTouchmove(event) {
             touchmoveCoordX = event.changedTouches[0].clientX;
             var elMainCoordX0New = touchmoveCoordX - (touchstartCoordX - elMainCoordX0);
-
-            if ((elMainCoordX0New) <= 0) { // swipe touchmove < elSubmainWidth
+            console.log(elMainCoordX0New);
+            if ((elMainCoordX0New) <= -6) { // swipe touchmove < elSubmainWidth
                 if (touchstartCoordX > elSubmainWidth) { //if opened and touchstart over elSub
                     elMainCoordX0New = elMainCoordX0New + (touchstartCoordX - elSubmainWidth);
                 }
