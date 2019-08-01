@@ -1,5 +1,7 @@
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(){
     var menu = document.querySelector(".menu");
+    var openBtn = document.querySelector(".open-btn");
+    var closeBtn = document.querySelector(".close-btn");
 
     var touchSideSwipe = new TouchSideSwipe({
         elemSelector: '.menu',
@@ -16,14 +18,6 @@ $(document).ready(function(){
     menu.style.visibility = 'visible';
 
 
-    var openBtn = document.querySelector(".open-btn");
-    var closeBtn = document.querySelector(".close-btn");
-
-    $(openBtn).click(function(){
-        touchSideSwipe.tssOpen();
-    });
-
-    $(closeBtn).click(function(){
-        touchSideSwipe.tssClose();
-    });
+    openBtn.addEventListener("click", touchSideSwipe.tssOpen);
+    closeBtn.addEventListener("click", touchSideSwipe.tssClose);
 });
