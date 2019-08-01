@@ -5,7 +5,7 @@
 	<title>Document</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="stylesheet" href="touch-sideswipe.min.css">
+	<link rel="stylesheet" href="touch-sideswipe.css">
 	<style>
 		* {
 			box-sizing: border-box;
@@ -16,7 +16,7 @@
 			margin: 0;
 		}
 
-		.body--freezed {
+		/*.body--freezed {
 			overflow: hidden;
 			height: 100%;
 			width: 100%;
@@ -26,8 +26,17 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-			overflow: hidden;
 			height: 100%;
+		}
+		
+		.tss-wrap > div {
+			position: relative;
+		}
+
+		.tss-label_pic {
+			z-index: 1000;
+			position: absolute;
+			right: -40px;
 		}
 
 		.menu {
@@ -61,7 +70,7 @@
 			background: blue;
 			height: 50px;
 			width: 100%;
-		}
+		}*/
 	</style>
 </head>
 <body>
@@ -70,6 +79,7 @@
 		<div class="menu__control">Различные кнопки</div>
 		<div class="menu__scroll">
 			Контент
+			<a href="#" class="close-btn">Close</a>
 		</div>
 	</aside>
 

@@ -52,11 +52,14 @@
             elMain = document.createElement('div');
             elSubmain = document.createElement('div');
             elBg = document.createElement('div');
+            elLabel = document.createElement('div');
+            elLabel.innerHTML = '<div class="tss-label_pic"></div>';
             //-------------------------------
 
             //-------------------------------
             // wrap initial-elem in main in submain, add bg in body
             elMain.appendChild(elSubmain);
+            elSubmain.appendChild(elLabel);
             elInit.parentNode.insertBefore(elMain, elInit);
             elSubmain.appendChild(elInit);
             document.body.insertBefore(elBg, document.body.lastChild);
@@ -68,6 +71,7 @@
             elMain.classList = 'tss';
             elSubmain.classList = 'tss-wrap';
             elBg.classList = 'tss-bg';
+            elLabel.classList = 'tss-label';
             //-------------------------------
 
             //-------------------------------
@@ -113,7 +117,6 @@
 
 
         function tssTouchstart(event) {
-            event.preventDefault();
             document.body.style.overflow = 'hidden';
             elMain.style.transitionDuration = '0s';
             elBg.style.transitionDuration = '0s';
@@ -128,7 +131,6 @@
         // Drag element (use states from tssInitStates, tssRecalcStates, tssTouchstart)
         //------------------------------------------------------------------
         function tssTouchmove(event) {
-            event.preventDefault();
             touchmoveCoordX = event.changedTouches[0].clientX;
             touchmoveCoordY = event.changedTouches[0].clientY;
 
@@ -163,8 +165,6 @@
                     }
                 }
             }
-
-            return false;
         }
         //------------------------------------------------------------------
 
@@ -297,6 +297,7 @@
                 elMain.addEventListener('touchmove', tssTouchmove, false);
                 elMain.addEventListener('touchend', tssTouchend, false);
                 elMain.addEventListener('click', elBgClick, false);
+                elLabel.addEventListener('click', elLabelClick, false);
             }
             window.addEventListener('resize', winOnresizeEngine, false);
         }

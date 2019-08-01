@@ -26,7 +26,6 @@
 		position: absolute
 	}
 	.tss-label {
-		display: none;
 		z-index: 99999;
 		position: absolute;
 		top: 5px;
@@ -120,6 +119,14 @@
 	left: 0;
 	overflow: hidden;
 	height: 100%;
+}
+
+.tss-label {
+	transition: right .4s;
+}
+
+.tss--open .tss-label {
+	right: 20px;
 }
 
 .menu {
