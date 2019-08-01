@@ -199,7 +199,7 @@
         function elBgClick(event) {
             event.stopPropagation();
             var elMainCoordX0ForClick = elMain.getBoundingClientRect().left;
-            if (event.clientX > (elMainCoordX0ForClick + elSubmainWidth)) {
+            if (event.clientX > elInit.offsetWidth) {
                 tssClose();
             }
         }

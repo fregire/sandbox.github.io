@@ -3,8 +3,8 @@ $(document).ready(function(){
 
     var touchSideSwipe = new TouchSideSwipe({
         elemSelector: '.menu',
-        elementWidth: menu.innerWidth,
-        elementMaxWidth: .95, 
+        elementWidth: menu.offsetWidth,
+        elementMaxWidth: 1, 
         sideHookWidth: 0, 
         moveSpeed: 0.5,
         opacityBackground: .5,
