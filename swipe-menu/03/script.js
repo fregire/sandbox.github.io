@@ -52,14 +52,11 @@
             elMain = document.createElement('div');
             elSubmain = document.createElement('div');
             elBg = document.createElement('div');
-            elLabel = document.createElement('div');
-            elLabel.innerHTML = '<div class="tss-label_pic"></div>';
             //-------------------------------
 
             //-------------------------------
             // wrap initial-elem in main in submain, add bg in body
             elMain.appendChild(elSubmain);
-            elSubmain.appendChild(elLabel);
             elInit.parentNode.insertBefore(elMain, elInit);
             elSubmain.appendChild(elInit);
             document.body.insertBefore(elBg, document.body.lastChild);
@@ -71,7 +68,6 @@
             elMain.classList = 'tss';
             elSubmain.classList = 'tss-wrap';
             elBg.classList = 'tss-bg';
-            elLabel.classList = 'tss-label';
             //-------------------------------
 
             //-------------------------------
@@ -297,7 +293,6 @@
                 elMain.addEventListener('touchmove', tssTouchmove, false);
                 elMain.addEventListener('touchend', tssTouchend, false);
                 elMain.addEventListener('click', elBgClick, false);
-                elLabel.addEventListener('click', elLabelClick, false);
             }
             window.addEventListener('resize', winOnresizeEngine, false);
         }
@@ -335,31 +330,37 @@
 }));
 
 document.addEventListener("DOMContentLoaded", function(){
-    var menu = document.querySelector(".menu");
+    var sidebar = document.querySelector(".sidebar");
+    var closeItems = document.querySelectorAll(".close");
+    var openItems = document.querySelectorAll(".open");
 
     var touchSideSwipe = new TouchSideSwipe({
-        elemSelector: '.menu',
-        elementWidth: menu.offsetWidth,
+        elemSelector: '.sidebar',
+        elementWidth: sidebar.offsetWidth,
         elementMaxWidth: 1, 
-        sideHookWidth: 5, 
+        sideHookWidth: 15, 
         moveSpeed: 0.5,
-        opacityBackground: .5,
+        opacityBackground: 0.5,
         shiftForStart: 100,
-        windowMaxWidth: 2000, 
+        windowMaxWidth: 1000, 
         
     });
 
-    menu.style.visibility = 'visible';
 
-    document.addEventListener("click", function(e){
-        if(e.target.classList.contains("open-btn")){
-            e.preventDefault();
-            touchSideSwipe.tssOpen();
-        }
+    sidebar.style.display = "block";
 
-        if(e.target.classList.contains("close-btn")){
+
+    for(var i = 0; i < closeItems.length; i++){
+        closeItems[i].addEventListener("click", function(e){
             e.preventDefault();
             touchSideSwipe.tssClose();
-        }
-    });
+        });
+    }
+
+    for(var i = 0; i < openItems.length; i++){
+        openItems[i].addEventListener("click", function(e){
+            e.preventDefault();
+            touchSideSwipe.tssOpen();
+        });
+    }
 });

@@ -13,13 +13,13 @@
 	display: block;
 	overflow-y: overlay
 }
-.tss {
-	z-index: 9999;
+.tss {	z-index: 9999;
 	position: fixed;
 	will-change: transform;
 	transition-property: transform;
 	transition-timing-function: ease
 }
+
 .tss-wrap {
 	width: 100%;
 	position: absolute
@@ -91,6 +91,12 @@
 	transform: translate(-50%, -50%);
 	box-shadow: inset 0 0 0 32px
 }*/
+
+.sidebar {
+	display: none;
+	height: 100%;
+}
+
 .tss-bg {
 	background: #000;
 	position: fixed;
@@ -107,72 +113,17 @@
 /* Additional */
 .body--freezed {
 	overflow: hidden;
-	/*For ios safari cancel swipe*/ 
-	position: fixed;
+	height: 100%;
 }
 
-.tss {
+/*.tss {
 	position: fixed;
 	top: 0;
 	left: 0;
 	overflow: hidden;
 	height: 100%;
 }
+*/
 
-.tss-label {
-	transition: right .4s;
-}
 
-.tss-label_pic {
-	width: 40px;
-	height: 40px;
 
-	background-color: transparent;
-	-webkit-background-size: 40px;
-	background-size: 40px;
-	background-repeat: no-repeat;
-}
-
-.tss--close .tss-label_pic {
-	background-image: url(./ic_sidebar.png);
-}
-
-.tss--open .tss-label_pic {
-	background-image: url(./ic_close.png);
-}
-
-.tss--open .tss-label {
-	right: 5px;
-}
-
-.menu {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	height: 100%;
-	visibility: hidden;
-}
-
-.menu__scroll {
-	width: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    position: absolute;
-    z-index: 12;
-    top: 55px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow-scrolling: touch;
-    -webkit-overflow-scrolling: touch;
-
-    background: red;
-}
-
-.menu__control {
-	background: blue;
-	height: 55px;
-	width: 100%;
-}
