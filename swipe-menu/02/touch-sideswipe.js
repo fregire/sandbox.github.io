@@ -369,15 +369,12 @@
             elInit = document.querySelector(opt.elem);
             elMain = document.createElement('div');
             elSubmain = document.createElement('div');
-            elLabel = document.createElement('div');
-            elLabel.innerHTML = '<div class="tss-label_pic"></div>';
             elBg = document.createElement('div');
             //-------------------------------
 
             //-------------------------------
             // wrap initial-elem in main in submain, add bg in body
             elMain.appendChild(elSubmain);
-            elSubmain.appendChild(elLabel);
             elInit.parentNode.insertBefore(elMain, elInit);
             elSubmain.appendChild(elInit);
             document.body.insertBefore(elBg, document.body.lastChild);
@@ -388,7 +385,6 @@
             //-------------------------------
             elMain.classList = 'tss';
             elSubmain.classList = 'tss-wrap';
-            elLabel.classList = 'tss-label';
             elBg.classList = 'tss-bg';
             //-------------------------------
 
@@ -619,7 +615,6 @@
                 elMain.addEventListener('touchmove', tssTouchmove, false);
                 elMain.addEventListener('touchend', tssTouchend, false);
                 elMain.addEventListener('click', elBgClick, false);
-                elLabel.addEventListener('click', elLabelClick, false);
             }
             window.addEventListener('resize', winOnresizeEngine, false);
         }
