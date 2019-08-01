@@ -228,9 +228,14 @@
         // change states on Open
         //------------------------------------------------------------------
         function tssOpen() {
-            currentYOffset = window.pageYOffset; 
-            document.body.style.top = -currentYOffset + 'px';
+            if(!elMain.classList.contains('tss--open')){
+                currentYOffset = window.pageYOffset; 
+            }
             
+            if(currentYOffset > 0){
+              document.body.style.top = -currentYOffset + 'px';
+            }
+
             elBg.style.opacity = opt.opacityBackground;
             elMain.style.width = winInnerWidth + 'px';
             elMain.style.transform = 'translateX(0px)';
@@ -259,6 +264,7 @@
             elBg.style.zIndex = '-999';
             document.body.classList.remove("body--freezed");
             open = false;
+            console.log(currentYOffset);
             window.scroll(0, currentYOffset);
         }
         //------------------------------------------------------------------
