@@ -495,6 +495,7 @@
         //------------------------------------------------------------------
         function tssTouchend(event) {
             actionInited = false;
+            alert(action);
             var touchendCoordX = event.changedTouches[0].clientX;
             document.body.style.overflow = '';
             elMain.style.transitionDuration = opt.moveSpeed + 's'; //todo: перетащить в open/close
