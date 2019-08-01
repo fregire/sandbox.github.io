@@ -107,8 +107,8 @@
 /* Additional */
 .body--freezed {
 	overflow: hidden;
-	height: 100%;
-	width: 100%;
+	/*For ios safari cancel swipe*/ 
+	position: fixed;
 }
 
 .tss {

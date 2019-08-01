@@ -336,8 +336,6 @@
 
 document.addEventListener("DOMContentLoaded", function(){
     var menu = document.querySelector(".menu");
-    var openBtn = document.querySelector(".open-btn");
-    var closeBtn = document.querySelector(".close-btn");
 
     var touchSideSwipe = new TouchSideSwipe({
         elemSelector: '.menu',
@@ -353,7 +351,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
     menu.style.visibility = 'visible';
 
+    document.addEventListener("click", function(e){
+        if(e.target.classList.contains("open-btn")){
+            e.preventDefault();
+            touchSideSwipe.tssOpen();
+        }
 
-    openBtn.addEventListener("click", touchSideSwipe.tssOpen);
-    closeBtn.addEventListener("click", touchSideSwipe.tssClose);
+        if(e.target.classList.contains("close-btn")){
+            e.preventDefault();
+            touchSideSwipe.tssClose();
+        }
+    });
 });
