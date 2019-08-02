@@ -194,6 +194,9 @@
                     tssOpen();
                 }
             }
+
+            
+            elBg.style.zIndex = '-999';
         }
         //------------------------------------------------------------------
 
@@ -264,7 +267,6 @@
             elBg.style.zIndex = '-999';
             document.body.classList.remove("body--freezed");
             open = false;
-            console.log(currentYOffset);
             window.scroll(0, currentYOffset);
         }
         //------------------------------------------------------------------
@@ -341,7 +343,6 @@
     };
     return TouchSideSwipe;
 }));
-
 document.addEventListener("DOMContentLoaded", function(){
     var sidebar = document.querySelector(".sidebar");
     var closeItems = document.querySelectorAll(".close");
