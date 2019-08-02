@@ -195,8 +195,11 @@
                 }
             }
 
+            if(!open){
+                elBg.style.zIndex = '-999';
+            }
 
-            elBg.style.zIndex = '-999';
+
         }
         //------------------------------------------------------------------
 
@@ -354,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function(){
         elementWidth: sidebar.offsetWidth,
         elementMaxWidth: 1, 
         sideHookWidth: 15, 
-        moveSpeed: 0.5,
+        moveSpeed: 0.4,
         opacityBackground: 0.5,
         shiftForStart: 100,
         windowMaxWidth: 1000, 
