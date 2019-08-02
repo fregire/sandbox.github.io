@@ -195,7 +195,7 @@
                 }
             }
 
-            
+
             elBg.style.zIndex = '-999';
         }
         //------------------------------------------------------------------
@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function(){
         elementWidth: sidebar.offsetWidth,
         elementMaxWidth: 1, 
         sideHookWidth: 15, 
-        moveSpeed: 0.8,
+        moveSpeed: 0.5,
         opacityBackground: 0.5,
         shiftForStart: 100,
         windowMaxWidth: 1000, 
