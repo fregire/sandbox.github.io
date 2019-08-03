@@ -76,17 +76,16 @@
             //-------------------------------
             // create first style parameters: width and state wrapped DOM-element
             //-------------------------------
-            if (winInnerWidth > 499) {
-                elSubmainWidth = opt.elSubmainWidth;
-            } else {
-                elSubmainWidth = winInnerWidth * opt.elSubmainMaxWidth;
-            }
+            elSubmainWidth = opt.elSubmainWidth;
+
             elSubmain.style.width = elSubmainWidth + 'px';
             elMainWidth = elSubmainWidth + opt.sideHookWidth;
             elMain.style.transitionDuration = opt.moveSpeed + 's';
             elBg.style.transitionDuration = opt.moveSpeed + 's';
             //-------------------------------
             tssClose();
+
+            elInit.style.display = "block";
         }
         //------------------------------------------------------------------
 
@@ -98,11 +97,9 @@
                 tssClose();
             }
             winInnerWidth = window.innerWidth;
-            if (winInnerWidth > 499) {
-                elSubmainWidth = opt.elSubmainWidth;
-            } else {
-                elSubmainWidth = winInnerWidth * opt.elSubmainMaxWidth;
-            }
+
+            elSubmainWidth = opt.elSubmainWidth;
+
             elMainWidth = elSubmainWidth + opt.sideHookWidth;
             elSubmain.style.width = elSubmainWidth + 'px';
             elMain.style.transform = 'translateX(' + (-elSubmainWidth) + 'px)';
@@ -355,7 +352,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var touchSideSwipe = new TouchSideSwipe({
         elemSelector: '.sidebar',
-        elementWidth: sidebar.offsetWidth,
+        elementWidth: $(sidebar).width(),
         elementMaxWidth: 1, 
         sideHookWidth: 8, 
         moveSpeed: 0.4,
@@ -365,8 +362,6 @@ document.addEventListener("DOMContentLoaded", function(){
         
     });
 
-
-    sidebar.style.display = "block";
 
 
     for(var i = 0; i < closeItems.length; i++){
