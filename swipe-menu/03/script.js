@@ -270,6 +270,7 @@
             elBg.style.zIndex = '-999';
             document.body.classList.remove("body--freezed");
             open = false;
+            document.body.removeAttribute("style");
             window.scroll(0, currentYOffset);
         }
         //------------------------------------------------------------------
@@ -356,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function(){
         elemSelector: '.sidebar',
         elementWidth: sidebar.offsetWidth,
         elementMaxWidth: 1, 
-        sideHookWidth: 15, 
+        sideHookWidth: 8, 
         moveSpeed: 0.4,
         opacityBackground: 0.5,
         shiftForStart: 100,
@@ -372,8 +373,8 @@ document.addEventListener("DOMContentLoaded", function(){
         closeItems[i].addEventListener("click", function(e){
             e.preventDefault();
             touchSideSwipe.tssClose();
-            document.body.style.top = "";
-            window.scroll(0, currentYOffset);
+            //document.body.style.top = "";
+            //window.scroll(0, currentYOffset);
         });
     }
 
