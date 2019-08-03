@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function(){
         elemSelector: '.sidebar',
         elementWidth: $(sidebar).width(),
         elementMaxWidth: 1, 
-        sideHookWidth: 8, 
+        sideHookWidth: 5, 
         moveSpeed: 0.4,
         opacityBackground: 0.5,
         shiftForStart: 100,
