@@ -76,15 +76,17 @@
             //-------------------------------
             // create first style parameters: width and state wrapped DOM-element
             //-------------------------------
-            elSubmainWidth = opt.elSubmainWidth;
-
+            if (winInnerWidth > 499) {
+                elSubmainWidth = opt.elSubmainWidth;
+            } else {
+                elSubmainWidth = winInnerWidth * opt.elSubmainMaxWidth;
+            }
             elSubmain.style.width = elSubmainWidth + 'px';
             elMainWidth = elSubmainWidth + opt.sideHookWidth;
             elMain.style.transitionDuration = opt.moveSpeed + 's';
             elBg.style.transitionDuration = opt.moveSpeed + 's';
             //-------------------------------
             tssClose();
-
             elInit.style.display = "block";
         }
         //------------------------------------------------------------------
@@ -97,9 +99,11 @@
                 tssClose();
             }
             winInnerWidth = window.innerWidth;
-
-            elSubmainWidth = opt.elSubmainWidth;
-
+            if (winInnerWidth > 499) {
+                elSubmainWidth = opt.elSubmainWidth;
+            } else {
+                elSubmainWidth = winInnerWidth * opt.elSubmainMaxWidth;
+            }
             elMainWidth = elSubmainWidth + opt.sideHookWidth;
             elSubmain.style.width = elSubmainWidth + 'px';
             elMain.style.transform = 'translateX(' + (-elSubmainWidth) + 'px)';
@@ -267,6 +271,7 @@
             elBg.style.zIndex = '-999';
             document.body.classList.remove("body--freezed");
             open = false;
+
             document.body.removeAttribute("style");
             window.scroll(0, currentYOffset);
         }
@@ -292,8 +297,10 @@
             winInnerWidth = window.innerWidth;
             if (winInnerWidth < opt.windowMaxWidth && !init) {
                 tssActionsEngine();
+                elInit.style.display = "block";
             } else if (winInnerWidth >= opt.windowMaxWidth && init) {
                 tssClear();
+                elInit.style.display = "none";
             }
         }
         //------------------------------------------------------------------
@@ -346,19 +353,19 @@
 }));
 document.addEventListener("DOMContentLoaded", function(){
     var sidebar = document.querySelector(".sidebar");
-    var closeItems = document.querySelectorAll(".close");
-    var openItems = document.querySelectorAll(".open");
+    var closeItems = document.querySelectorAll(".close_sidebar");
+    var openItems = document.querySelectorAll(".open_sidebar");
     var currentYOffset = 0;
 
     var touchSideSwipe = new TouchSideSwipe({
         elemSelector: '.sidebar',
-        elementWidth: $(sidebar).width(),
+        elementWidth: sidebar.offsetWidth,
         elementMaxWidth: 1, 
-        sideHookWidth: 6, 
+        sideHookWidth: 15, 
         moveSpeed: 0.4,
         opacityBackground: 0.5,
         shiftForStart: 100,
-        windowMaxWidth: 1000, 
+        windowMaxWidth: 800, 
         
     });
 
@@ -368,8 +375,8 @@ document.addEventListener("DOMContentLoaded", function(){
         closeItems[i].addEventListener("click", function(e){
             e.preventDefault();
             touchSideSwipe.tssClose();
-            //document.body.style.top = "";
-            //window.scroll(0, currentYOffset);
+            document.body.style.top = "";
+            window.scroll(0, currentYOffset);
         });
     }
 
